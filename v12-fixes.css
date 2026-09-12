@@ -1,0 +1,51 @@
+/* v12: single-scroll mobile behavior + hidden scrollbars */
+html{height:100%!important;overflow:hidden!important;overscroll-behavior-x:none!important}
+body{height:100dvh!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-x:none!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y!important}
+body.daily-lock,body.week-lock{overflow:hidden!important;touch-action:none!important}
+html,body,.app,.page,#home,#packing,#money,#daily,#week{max-width:100%!important;overflow-x:hidden!important}
+.app{width:100%!important;max-width:none!important;overflow:visible!important;background:transparent!important}
+.page{overflow:visible!important}
+*{scrollbar-width:none!important}
+*::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+.bottomnav{left:0!important;right:0!important;width:100vw!important;max-width:none!important}
+#home,#packing,#money{touch-action:pan-y!important;overscroll-behavior-x:none!important}
+
+/* icon weight */
+.navitem .ico svg{width:23px!important;height:23px!important;stroke-width:2.65!important;vector-effect:non-scaling-stroke!important}
+.navitem[data-page="daily"] .ico svg{stroke-width:3.05!important}
+
+/* daily: one fixed phone canvas, no vertical scrolling */
+body.daily-lock .app{height:100dvh!important;min-height:0!important;overflow:hidden!important;padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 12px)!important}
+body.daily-lock #daily.active{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;touch-action:none!important}
+body.daily-lock #daily .topbar{flex:0 0 auto!important;margin-bottom:7px!important}
+body.daily-lock #daily .tabs{flex:0 0 auto!important;margin-bottom:7px!important}
+body.daily-lock #daily .route-fixed{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:hidden!important;margin:0!important}
+body.daily-lock #daily .route-list{min-height:0!important;overflow:hidden!important}
+body.daily-lock #daily .addday{flex:0 0 auto!important;margin-top:7px!important;margin-bottom:8px!important}
+
+/* weekly: the calendar itself is the only scroll layer */
+body.week-lock .app{height:100dvh!important;min-height:0!important;overflow:hidden!important;padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 10px)!important}
+body.week-lock #week.active{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;touch-action:none!important}
+body.week-lock #week .topbar{flex:0 0 auto!important;margin-bottom:6px!important}
+body.week-lock #week .week-head{flex:0 0 auto!important;margin-bottom:5px!important}
+body.week-lock #week .calhelp{display:none!important}
+body.week-lock #week .weekcalendar{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;touch-action:pan-y!important;overscroll-behavior-x:none!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important;padding-bottom:0!important}
+body.week-lock #week .weekbody{min-width:0!important;overflow:visible!important}
+.week-day,.week-day b,.week-day span,.week-day.today,.week-day.today b,.week-day.today span{color:#5e5861!important;background:none!important;box-shadow:none!important;border-radius:0!important}
+.week-day.today b{width:auto!important;height:auto!important;display:block!important;margin:0!important}
+
+/* only the main/long event gets the blue gradient; every other block is the same */
+.eventblock,.eventblock.activity,.eventblock.food,.eventblock.transport,.eventblock.hotel,.eventblock.rest{background:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.52))!important;border-color:rgba(255,255,255,.72)!important;color:#4d4650!important;box-shadow:0 8px 18px rgba(62,53,70,.12)!important}
+.eventblock.major{background:linear-gradient(135deg,rgba(111,128,255,.88),rgba(91,211,231,.72) 58%,rgba(164,221,255,.70))!important;color:#182342!important;border-color:rgba(255,255,255,.86)!important;box-shadow:0 10px 24px rgba(62,83,139,.20)!important}
+.eventblock{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;touch-action:none!important}
+.eventblock.dragging{opacity:.28!important}
+.dragghost{pointer-events:none!important;transition:none!important;will-change:transform,left,top!important;z-index:9999!important}
+
+/* packing picker stays scrollable but without a visible bar */
+.catwheel{scrollbar-width:none!important}
+.catwheel::-webkit-scrollbar{display:none!important}
+
+/* money */
+#money .topbar .iconbtn{display:none!important}
+body.money-page #money{padding-bottom:150px!important}
+body.money-page #money .section:last-child{padding-bottom:96px!important}
