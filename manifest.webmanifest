@@ -1,9 +1,9 @@
 {
-  "name": "峇里島旅行 App v8",
+  "name": "峇里島旅行 App v9",
   "short_name": "Bali Trip",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#121412",
+  "background_color": "#f47a12",
   "theme_color": "#f47a12",
   "icons": [
     {
