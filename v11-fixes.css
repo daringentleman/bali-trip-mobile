@@ -1,0 +1,51 @@
+/* v11 interaction + layout refinements */
+html,body,.app,.page{max-width:100%!important;overflow-x:hidden!important}
+html,body{overscroll-behavior-x:none!important}
+#home,#packing,#money{touch-action:pan-y!important}
+
+/* bottom nav: one icon system, same visual weight */
+.navitem .ico svg{width:23px!important;height:23px!important;stroke-width:2.65!important;vector-effect:non-scaling-stroke!important}
+.navitem[data-page="daily"] .ico svg{stroke-width:2.65!important}
+
+/* daily itinerary fills the phone without vertical page scrolling */
+body.daily-lock{height:100dvh!important;overflow:hidden!important}
+body.daily-lock .app{height:100dvh!important;min-height:0!important;overflow:hidden!important;padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 8px)!important}
+body.daily-lock #daily.active{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;touch-action:none!important}
+body.daily-lock #daily .topbar{flex:0 0 auto!important;margin-bottom:8px!important}
+body.daily-lock #daily .tabs{flex:0 0 auto!important;margin-bottom:7px!important}
+body.daily-lock #daily .route-fixed{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:hidden!important;margin:0!important}
+body.daily-lock #daily .route-list{min-height:0!important;overflow:hidden!important}
+body.daily-lock #daily .addday{flex:0 0 auto!important;margin-top:7px!important;margin-bottom:0!important}
+.daily-swipe-layer{will-change:transform;transform:translate3d(0,0,0)}
+
+/* weekly overview: vertical-only scrolling, full-height window */
+body.week-lock{height:100dvh!important;overflow:hidden!important}
+body.week-lock .app{height:100dvh!important;min-height:0!important;overflow:hidden!important;padding-bottom:calc(var(--navh) + env(safe-area-inset-bottom) + 8px)!important}
+body.week-lock #week.active{display:flex!important;flex-direction:column!important;flex:1 1 auto!important;height:auto!important;min-height:0!important;overflow:hidden!important;touch-action:pan-y!important}
+body.week-lock #week .topbar{flex:0 0 auto!important;margin-bottom:7px!important}
+body.week-lock #week .week-head{flex:0 0 auto!important}
+body.week-lock #week .calhelp{display:none!important}
+body.week-lock #week .weekcalendar{flex:1 1 auto!important;min-height:0!important;height:auto!important;max-height:none!important;overflow-y:auto!important;overflow-x:hidden!important;touch-action:pan-y!important;overscroll-behavior-x:none!important;overscroll-behavior-y:contain!important;-webkit-overflow-scrolling:touch!important}
+body.week-lock #week .weekbody{min-width:0!important;overflow:visible!important}
+.week-day.today,.week-day.today b,.week-day.today span{color:#5e5861!important}
+.week-day.today b{background:none!important;color:inherit!important;width:auto!important;height:auto!important;border-radius:0!important;display:block!important;box-shadow:none!important;margin:0!important}
+.eventblock{touch-action:pan-y!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+.eventblock.drag-active{touch-action:none!important}
+
+/* category wheel for packing additions */
+.pack-category-picker{margin-top:10px;padding:10px 10px 8px;border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.15));border:1px solid rgba(255,255,255,.42);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px) saturate(1.15);-webkit-backdrop-filter:blur(20px) saturate(1.15)}
+.pack-category-picker .picker-label{font-size:11px;font-weight:900;color:#413858;margin-bottom:6px}
+.catwheel-wrap{position:relative;height:108px;overflow:hidden;border-radius:14px;background:rgba(255,255,255,.20)}
+.catwheel-wrap:before,.catwheel-wrap:after{content:"";position:absolute;left:0;right:0;height:36px;z-index:2;pointer-events:none}
+.catwheel-wrap:before{top:0;background:linear-gradient(180deg,rgba(238,231,229,.92),rgba(238,231,229,0))}
+.catwheel-wrap:after{bottom:0;background:linear-gradient(0deg,rgba(224,221,230,.92),rgba(224,221,230,0))}
+.catwheel-focus{position:absolute;left:7px;right:7px;top:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,rgba(141,107,255,.28),rgba(120,224,230,.25),rgba(255,204,226,.25));border:1px solid rgba(255,255,255,.62);pointer-events:none;z-index:1}
+.catwheel{height:108px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;-webkit-overflow-scrolling:touch;padding:36px 0;position:relative;z-index:3;scrollbar-width:none}
+.catwheel::-webkit-scrollbar{display:none}
+.catwheel-item{height:36px;display:flex;align-items:center;justify-content:center;scroll-snap-align:center;font-size:13px;font-weight:750;color:#6d6670;transition:transform .15s ease,opacity .15s ease,color .15s ease;opacity:.52}
+.catwheel-item.active{color:#251a43;opacity:1;transform:scale(1.06);font-weight:900}
+
+/* money floating add only */
+#money .topbar .iconbtn{display:none!important}
+body.money-page #money{padding-bottom:150px!important}
+body.money-page #money .section:last-child{padding-bottom:96px!important}
