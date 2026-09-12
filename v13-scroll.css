@@ -1,4 +1,4 @@
-/* v13: one vertical scroll layer per screen */
+/* v14: one vertical scroll layer per screen + focused layout fixes */
 html{
   height:auto!important;
   min-height:100%!important;
@@ -48,7 +48,7 @@ body{
 }
 .moneyfab{bottom:calc(var(--navh) + 18px)!important}
 
-/* Daily itinerary: restore the taller v11 phone canvas. */
+/* Daily itinerary: one phone canvas, no vertical scroll. */
 body.daily-lock{
   height:100dvh!important;
   min-height:0!important;
@@ -81,9 +81,23 @@ body.daily-lock #daily .route-fixed{
   max-height:none!important;
   overflow:hidden!important;
   margin:0!important;
+  position:relative!important;
+  will-change:transform!important;
 }
 body.daily-lock #daily .route-list{min-height:0!important;overflow:hidden!important}
 body.daily-lock #daily .addday{flex:0 0 auto!important;margin-top:7px!important;margin-bottom:0!important}
+
+/* Smooth daily swipe preview. */
+.daily-route-preview{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  z-index:5!important;
+  pointer-events:none!important;
+  margin:0!important;
+}
+.daily-swipe-current,.daily-route-preview{will-change:transform!important}
 
 /* Week overview: the calendar is the one and only vertical scroller. */
 body.week-lock{
@@ -129,3 +143,63 @@ body.week-lock #week .weekbody{min-width:0!important;overflow:visible!important}
 /* Native vertical scroll stays active until the 0.5 s drag actually starts. */
 .eventblock{touch-action:pan-y!important}
 .eventblock.drag-active,.eventblock.dragging{touch-action:none!important}
+
+/* Main/important events keep the blue gradient; all other events share one glass color. */
+.eventblock,.eventblock.activity,.eventblock.food,.eventblock.transport,.eventblock.hotel,.eventblock.rest{
+  background:linear-gradient(180deg,rgba(255,255,255,.82),rgba(255,255,255,.56))!important;
+  border-color:rgba(255,255,255,.76)!important;
+  color:#4d4650!important;
+}
+.eventblock.major{
+  background:linear-gradient(135deg,rgba(108,124,255,.92),rgba(80,205,229,.76) 58%,rgba(163,218,255,.72))!important;
+  color:#172242!important;
+  border-color:rgba(255,255,255,.90)!important;
+  box-shadow:0 10px 24px rgba(61,82,139,.22)!important;
+}
+.eventblock.major .et,.eventblock.major .en{color:inherit!important}
+
+/* Packing picker: isolate its internal wheel so hidden wheel items do not extend
+   the page scroll height. The page now stops with the same margin as the side inset. */
+#packing .card{overflow:hidden!important}
+#packing .catwheel-wrap{
+  position:relative!important;
+  height:108px!important;
+  min-height:108px!important;
+  max-height:108px!important;
+  overflow:hidden!important;
+  contain:layout paint!important;
+}
+#packing .catwheel{
+  position:absolute!important;
+  inset:0!important;
+  height:108px!important;
+  max-height:108px!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  contain:strict!important;
+  overscroll-behavior:contain!important;
+}
+
+/* iPhone time inputs: prevent intrinsic control width from breaking the modal grid. */
+#editModal .sheet{overflow-x:hidden!important}
+#editModal .timerow{
+  width:100%!important;
+  min-width:0!important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  gap:8px!important;
+}
+#editModal .timerow>label{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+#editModal .timerow .field,
+#editModal input[type="time"]{
+  display:block!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
