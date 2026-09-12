@@ -1,4 +1,5 @@
 {
+  "id": "/bali-trip",
   "name": "峇里島旅行 App",
   "short_name": "Bali Trip",
   "start_url": "/index.html",
@@ -7,12 +8,6 @@
   "background_color": "#d8c4c4",
   "theme_color": "#d8c4c4",
   "icons": [
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
-    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
