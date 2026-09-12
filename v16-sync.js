@@ -10,7 +10,7 @@
 
   let syncCode=localStorage.getItem(CODE_KEY)||'';
   let deviceId=localStorage.getItem(DEVICE_KEY)||'';
-  let syncing=false,suppress=false,syncTimer=null,pollTimer=null,started=false;
+  let syncing=false,suppress=false,syncTimer=null,pollTimer=null;
   if(!deviceId){deviceId='dev_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8);localStorage.setItem(DEVICE_KEY,deviceId)}
 
   const rawSaveEvents=saveEvents,rawSavePack=savePack,rawSaveExpenses=saveExpenses,rawSaveBuys=saveBuys;
@@ -138,13 +138,13 @@
       #baliSyncModal{position:fixed;inset:0;z-index:20000;background:rgba(35,31,38,.52);display:none;align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
       #baliSyncModal.show{display:flex}#baliSyncModal .syncbox{width:min(360px,100%);border:1px solid rgba(255,255,255,.58);background:rgba(248,244,240,.88);box-shadow:0 22px 60px rgba(35,29,40,.24);border-radius:26px;padding:20px;color:#211d25}
       #baliSyncModal h3{margin:0 0 8px;font-size:20px}#baliSyncModal p{font-size:12px;line-height:1.5;color:#706a73;margin:0 0 14px}
-      #baliSyncModal input{width:100%;border:1px solid rgba(120,110,130,.22);background:rgba(255,255,255,.78);border-radius:15px;padding:14px;text-align:center;font-size:22px;letter-spacing:.18em;margin-bottom:10px;outline:none}
+      #baliSyncModal input{width:100%;border:1px solid rgba(120,110,130,.22);background:rgba(255,255,255,.78);border-radius:15px;padding:14px;text-align:center;font-size:19px;letter-spacing:.10em;margin-bottom:10px;outline:none;text-transform:uppercase}
       #baliSyncModal button{width:100%;border:0;border-radius:15px;padding:12px 14px;font-weight:900;background:linear-gradient(135deg,#8d6bff,#78dfe6);color:#241a3b}
       #baliSyncError{min-height:18px;font-size:11px;color:#b54b55;text-align:center;margin-top:8px}
       #baliSyncBadge{position:fixed;right:10px;top:calc(env(safe-area-inset-top) + 8px);z-index:95;width:8px;height:8px;border-radius:50%;background:#a7a2aa;box-shadow:0 0 0 3px rgba(255,255,255,.55);pointer-events:none;opacity:.75}
       #baliSyncBadge.ok{background:#45b785}#baliSyncBadge.offline{background:#d49d4e}
     `;document.head.appendChild(style);
-    const modal=document.createElement('div');modal.id='baliSyncModal';modal.innerHTML=`<div class="syncbox"><h3>連接兩人共享行程</h3><p>第一次只需要輸入一次共享同步碼。這支手機目前的行程、清單、記帳與待買資料會先備份，再和另一支手機合併，不會先清除。</p><input id="baliSyncInput" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="8 位同步碼"><button id="baliSyncConnect">開始共享同步</button><div id="baliSyncError"></div></div>`;document.body.appendChild(modal);
+    const modal=document.createElement('div');modal.id='baliSyncModal';modal.innerHTML=`<div class="syncbox"><h3>連接兩人共享行程</h3><p>第一次只需要輸入一次共享同步碼。這支手機目前的行程、清單、記帳與待買資料會先備份，再和另一支手機合併，不會先清除。</p><input id="baliSyncInput" inputmode="text" autocapitalize="characters" autocomplete="off" maxlength="12" placeholder="12 位同步碼"><button id="baliSyncConnect">開始共享同步</button><div id="baliSyncError"></div></div>`;document.body.appendChild(modal);
     const badge=document.createElement('div');badge.id='baliSyncBadge';document.body.appendChild(badge);
     document.getElementById('baliSyncConnect').onclick=connectFromModal;
     document.getElementById('baliSyncInput').addEventListener('keydown',e=>{if(e.key==='Enter')connectFromModal()});
@@ -152,7 +152,7 @@
   function setStatus(s){const b=document.getElementById('baliSyncBadge');if(b)b.className=s||''}
   async function connectFromModal(){
     const input=document.getElementById('baliSyncInput'),err=document.getElementById('baliSyncError'),btn=document.getElementById('baliSyncConnect');
-    const v=(input.value||'').replace(/\D/g,'');if(v.length!==8){err.textContent='請輸入 8 位同步碼';return}
+    const v=(input.value||'').toUpperCase().replace(/[^A-Z0-9]/g,'');if(v.length!==12){err.textContent='請輸入 12 位同步碼';return}
     syncCode=v;btn.disabled=true;btn.textContent='連線中…';err.textContent='';
     try{
       if(!await verifyCode()){throw new Error('bad code')}
