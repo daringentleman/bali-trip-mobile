@@ -1,33 +1,24 @@
 {
-  "rewrites": [
-    {
-      "source": "/apple-touch-icon-bali-v2.png",
-      "destination": "https://qblautsduswdhwdcqsre.supabase.co/functions/v1/bali-app-icon?v=2"
-    },
-    {
-      "source": "/apple-touch-icon.png",
-      "destination": "https://qblautsduswdhwdcqsre.supabase.co/functions/v1/bali-app-icon?v=2"
-    },
-    {
-      "source": "/apple-touch-icon-precomposed.png",
-      "destination": "https://qblautsduswdhwdcqsre.supabase.co/functions/v1/bali-app-icon?v=2"
-    },
-    {
-      "source": "/apple-touch-icon-180x180.png",
-      "destination": "https://qblautsduswdhwdcqsre.supabase.co/functions/v1/bali-app-icon?v=2"
-    }
-  ],
   "headers": [
     {
       "source": "/apple-touch-icon-bali-v2.png",
       "headers": [
-        {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}
+        {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"},
+        {"key":"Content-Type","value":"image/png"}
       ]
     },
     {
       "source": "/apple-touch-icon.png",
       "headers": [
-        {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"}
+        {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"},
+        {"key":"Content-Type","value":"image/png"}
+      ]
+    },
+    {
+      "source": "/apple-touch-icon-180x180.png",
+      "headers": [
+        {"key":"Cache-Control","value":"public, max-age=0, must-revalidate"},
+        {"key":"Content-Type","value":"image/png"}
       ]
     }
   ]
