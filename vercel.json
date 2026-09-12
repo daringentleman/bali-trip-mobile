@@ -2,7 +2,11 @@
   "headers": [
     {"source":"/index.html","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"}]},
     {"source":"/manifest.webmanifest","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"application/manifest+json; charset=utf-8"}]},
-    {"source":"/bali-touch-v29.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
-    {"source":"/iphone-v29.html","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"text/html; charset=utf-8"}]}
+    {"source":"/bali-touch-v30-120.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
+    {"source":"/bali-touch-v30-180.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
+    {"source":"/apple-touch-icon.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
+    {"source":"/apple-touch-icon-120x120.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
+    {"source":"/apple-touch-icon-precomposed.png","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"image/png"}]},
+    {"source":"/iphone-v30.html","headers":[{"key":"Cache-Control","value":"no-store, max-age=0"},{"key":"Content-Type","value":"text/html; charset=utf-8"}]}
   ]
 }
