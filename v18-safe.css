@@ -1,0 +1,15 @@
+/* v18 safe: notes, route planner, overlap lanes, reminder */
+#daily .stop .t{display:flex!important;align-items:center!important;gap:6px!important;min-width:0!important;white-space:nowrap!important}
+.v18-note-pill{display:inline-block;max-width:min(56vw,210px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:2px 7px;border-radius:999px;font-size:8px!important;font-weight:800!important;line-height:1.45;color:#483f54!important;background:linear-gradient(180deg,rgba(255,255,255,.74),rgba(255,255,255,.42));border:1px solid rgba(255,255,255,.66);vertical-align:middle}
+.v18-note-pill.empty{opacity:.48;font-weight:700!important}
+.v18-note-input{resize:none!important;min-height:58px!important;line-height:1.35!important}
+.v18-route-planner{border:1px solid rgba(255,255,255,.56);background:linear-gradient(180deg,rgba(255,255,255,.36),rgba(255,255,255,.18));box-shadow:0 10px 26px rgba(72,55,63,.10);border-radius:17px;padding:11px;display:grid;gap:8px}
+.v18-route-title{font-size:13px;font-weight:900;color:#302a35}.v18-route-sub{font-size:10px;line-height:1.4;color:#6f6873}
+.v18-route-calc,.v18-route-apply{width:100%}
+.v18-route-result{font-size:11px;line-height:1.45;color:#4d4650;display:grid;gap:3px}.v18-route-result b{font-size:13px}.v18-route-result span,.v18-route-result small{display:block}.v18-route-result small{color:#777079;font-size:9px}.v18-route-result em{font-style:normal;font-weight:900;color:#4d3e78;margin-top:3px}
+#editModal .sheet{max-height:92dvh!important}
+#editModal .form{padding-bottom:8px}
+.eventblock.v18-overlap{padding-left:2px!important;padding-right:2px!important}.eventblock.v18-overlap .et{font-size:6.5px!important}.eventblock.v18-overlap .en{font-size:7px!important;-webkit-line-clamp:4!important}
+.v18-reminder{margin-top:9px;padding:10px 12px;border-radius:17px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:linear-gradient(135deg,rgba(255,255,255,.54),rgba(255,255,255,.22));border:1px solid rgba(255,255,255,.56);box-shadow:0 10px 24px rgba(70,58,67,.09);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.v18-reminder>div{min-width:0}.v18-reminder b{display:block;font-size:12px;color:#352f39}.v18-reminder span{display:block;font-size:9px;color:#706a73;margin-top:2px;white-space:normal;line-height:1.35}.v18-reminder button{flex:0 0 auto}
+@media(max-width:360px){.v18-note-pill{max-width:44vw}.v18-route-planner{padding:9px}.v18-reminder{padding:9px 10px}}
