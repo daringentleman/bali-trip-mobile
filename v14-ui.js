@@ -31,26 +31,44 @@
     return ni>=0&&ni<DAYS.length?DAYS[ni][0]:null;
   }
 
+  function framePreview(current,p){
+    /* The preview must occupy exactly the same rectangle as the current
+       itinerary card. Using inset:0 made it size itself to the whole daily
+       page, which is why the next day could appear vertically shifted/cropped. */
+    p.style.setProperty('top',current.offsetTop+'px','important');
+    p.style.setProperty('left',current.offsetLeft+'px','important');
+    p.style.setProperty('right','auto','important');
+    p.style.setProperty('bottom','auto','important');
+    p.style.setProperty('width',current.offsetWidth+'px','important');
+    p.style.setProperty('height',current.offsetHeight+'px','important');
+    p.style.setProperty('min-height','0','important');
+    p.style.setProperty('max-height','none','important');
+  }
+
   function ensurePreview(dir){
     const day=neighbor(dir);if(!day)return null;
     const current=document.querySelector('#daily .route-fixed');if(!current)return null;
-    if(preview&&preview.dataset.day===day)return preview;
+    if(preview&&preview.dataset.day===day){framePreview(current,preview);return preview}
     preview?.remove();
     preview=current.cloneNode(true);
     preview.classList.add('daily-route-preview');
     preview.classList.remove('daily-swipe-current');
     preview.dataset.day=day;
+    preview.style.transition='none';
+    preview.style.transform='none';
     const list=preview.querySelector('.route-list');
     if(list)list.innerHTML=routeMarkup(day);
     current.parentNode.insertBefore(preview,current.nextSibling);
+    framePreview(current,preview);
     return preview;
   }
 
   function position(dx,withAnim=false){
     const current=document.querySelector('#daily .route-fixed');
     if(!current||!gesture)return;
-    const w=current.getBoundingClientRect().width,dir=gesture.dir;
+    const w=current.offsetWidth,dir=gesture.dir;
     const p=ensurePreview(dir);if(!p)return;
+    framePreview(current,p);
     const tr=withAnim?'transform 220ms cubic-bezier(.22,.75,.25,1)':'none';
     current.style.transition=tr;
     p.style.transition=tr;
@@ -63,7 +81,7 @@
     animating=true;
     const current=document.querySelector('#daily .route-fixed'),day=neighbor(dir);
     if(!current||!day){cleanupPreview();return}
-    const w=current.getBoundingClientRect().width;
+    const w=current.offsetWidth;
     position(dir>0?-w:w,true);
     setTimeout(()=>{
       selectedDay=day;
@@ -105,7 +123,8 @@
       const dir=dx<0?1:-1;
       gesture.dir=dir;
       if(!neighbor(dir)){position(dx*.22,false);return}
-      position(dx*.92,false);
+      /* Follow the finger 1:1 so both full cards stay edge-to-edge. */
+      position(dx,false);
     },{passive:false});
 
     page.addEventListener('touchend',()=>{
