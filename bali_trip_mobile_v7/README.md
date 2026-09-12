@@ -11,3 +11,4 @@ Changes from v6:
 Deploy:
 Replace the current repository root files with the files in this folder and commit to `main`.
 Once the Vercel project is connected to that Git repository, each commit to the production branch redeploys automatically.
+test auto deploy
