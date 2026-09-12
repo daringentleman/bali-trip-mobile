@@ -40,6 +40,19 @@
         {"key":"Cache-Control","value":"no-store, max-age=0"},
         {"key":"Content-Type","value":"image/png"}
       ]
+    },
+    {
+      "source": "/iphone-v28.html",
+      "headers": [
+        {"key":"Cache-Control","value":"no-store, max-age=0"}
+      ]
+    },
+    {
+      "source": "/ios28/bali-touch.png",
+      "headers": [
+        {"key":"Cache-Control","value":"no-store, max-age=0"},
+        {"key":"Content-Type","value":"image/png"}
+      ]
     }
   ]
 }
