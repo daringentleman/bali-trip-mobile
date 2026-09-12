@@ -71,6 +71,7 @@ body.daily-lock #daily.active{
   min-height:0!important;
   overflow:hidden!important;
   touch-action:none!important;
+  position:relative!important;
 }
 body.daily-lock #daily .topbar{flex:0 0 auto!important;margin-bottom:8px!important}
 body.daily-lock #daily .tabs{flex:0 0 auto!important;margin-bottom:7px!important}
@@ -87,15 +88,16 @@ body.daily-lock #daily .route-fixed{
 body.daily-lock #daily .route-list{min-height:0!important;overflow:hidden!important}
 body.daily-lock #daily .addday{flex:0 0 auto!important;margin-top:7px!important;margin-bottom:0!important}
 
-/* Smooth daily swipe preview. */
-.daily-route-preview{
+/* Smooth daily swipe preview. The JS pins the clone to the exact rectangle of
+   the current itinerary card so two complete cards move side-by-side. */
+body.daily-lock #daily .daily-route-preview{
   position:absolute!important;
-  inset:0!important;
-  width:100%!important;
-  height:100%!important;
+  inset:auto!important;
+  flex:none!important;
   z-index:5!important;
   pointer-events:none!important;
   margin:0!important;
+  overflow:hidden!important;
 }
 .daily-swipe-current,.daily-route-preview{will-change:transform!important}
 
